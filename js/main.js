@@ -1,26 +1,47 @@
-//for
+function calcularSubtotal () {
+	const precio_collar = 15
+	const precio_jabon = 4
+	const precio_alimento = 26
 
-/* let ingresarNumero = parseInt(prompt("Ingrese un numero"));
+	console.log("1 - Collar: " + precio_collar + " pesos")
+	console.log("2 - Jabon: " + precio_jabon + " pesos")
+	console.log("3 - Alimento: " + precio_alimento + " pesos")
 
-for (let i = ingresarNumero; i <= 20; i++){
-    console.log(i)
-} */
+	let subtotal = 0;
+	let cantidad = 0;
 
-//while
+	let productoIngresado = prompt("Ingrese codigo de producto")
 
-let productoIngresado = prompt("Ingrese producto")
-let listaDeProductosIngresados = ""
-
-while(productoIngresado != "ESC"){
-    listaDeProductosIngresados += productoIngresado;
-
-    productoIngresado = prompt("Ingrese producto")
-
-    if(productoIngresado != "ESC"){
-        listaDeProductosIngresados += ", "
-    }
+	while(productoIngresado !== "s") {
+		switch(productoIngresado) {
+			case "1":
+				cantidad = prompt("Cuantos desea?")
+				subtotal += cantidad * precio_collar
+				break;
+			case "2":
+				cantidad = prompt("Cuantos desea?")
+				subtotal += cantidad * precio_jabon
+				break;
+			case "3":
+				cantidad = prompt("Cuantos desea?")
+				subtotal += cantidad * precio_alimento
+				break;
+		}
+		productoIngresado = prompt("Ingrese codigo de producto")	
+	}
+	return subtotal;
 }
 
-console.log("Productos ingresados: " + listaDeProductosIngresados);
+function aplicarDescuentoSiCorresponde(subtotal) {
+	let total = subtotal
+	if (subtotal > 50) {
+		total = subtotal - subtotal / 10
+	}
+	return total
+}
 
+const subtotal = calcularSubtotal()
+console.log("El subtotal es " + subtotal)
 
+const total = aplicarDescuentoSiCorresponde(subtotal)
+console.log("El total es " + total)
